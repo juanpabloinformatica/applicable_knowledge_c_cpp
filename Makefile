@@ -1,4 +1,4 @@
-.PHONY: all clean format test-archive
+.PHONY: all clean format test-archive test-library test
 
 CFLAGS := -g -Wall -Werror -std=gnu11
 CC := gcc
@@ -8,6 +8,7 @@ workdir:= $(shell git rev-parse --show-toplevel)
 build_dir := build
 src_dir := src
 inc_dir := include
+test_dir:= test
 
 srcs := $(shell find ${src_dir} -type f -name "*.c")
 objs := $(patsubst %,${build_dir}/%.o,${srcs} )
@@ -32,6 +33,7 @@ ${build_dir}/%.o: %
 include custom.mk
 include archive.mk
 include library.mk
+include test.mk
 
 -include ${dependencies}
 
