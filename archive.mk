@@ -1,14 +1,19 @@
+$(info in archive)
+LDFLAGS := -L ${build_dir}/${archive}
+LDLIBS := -lcalculator
 archive := archive
+lib_name := libcalculator.a
 
-test-archive: ${build_dir}/${archive}/libcalculator.a
-	$(CC) -I./include  ${src_dir}/main.c -L ${build_dir}/${archive} \
-		-o ${build_dir}/main_1 -lcalculator
+libfile := $(addprefix ${build_dir}/${archive}/,${lib_name})
 
-${build_dir}/${archive}/libcalculator.a: ${build_dir}/${archive}/my_math.o
+test-archive: ${libfile}
+	$(CC) -I./include  ${src_dir}/main.c ${LDFLAGS} \
+		-o ${build_dir}/main_archive ${LDLIBS}
+
+${libfile}: $(filter %my_math.c.o,${objs})
 	mkdir -p ${@D}
 	ar -rc $@ $<
 
-${build_dir}/${archive}/my_math.o: ${src_dir}/my_math.c
+$(filter %my_math.c.o,${objs}): ${src_dir}/my_math.c
 	mkdir -p ${@D}
-	$(CC)  -I./include -g -Wall -Werror -std=gnu11 \
-		-o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
