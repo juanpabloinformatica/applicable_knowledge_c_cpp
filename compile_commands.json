@@ -1,0 +1,34 @@
+[
+ {
+  "directory": "/home/jppm/Documents/sharpening/c_cpp/applicable_knowledge_c_cpp",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Werror",
+   "-std=gnu11",
+   "-Iinclude",
+   "-c",
+   "src/main.c",
+   "-o",
+   "build/src/main.c.o"
+  ],
+  "file": "src/main.c"
+ },
+ {
+  "directory": "/home/jppm/Documents/sharpening/c_cpp/applicable_knowledge_c_cpp",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Werror",
+   "-std=gnu11",
+   "-Iinclude",
+   "-c",
+   "src/my_math.c",
+   "-o",
+   "build/src/my_math.c.o"
+  ],
+  "file": "src/my_math.c"
+ }
+]
